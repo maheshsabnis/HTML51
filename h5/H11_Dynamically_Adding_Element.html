@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dynamically Adding Element</title>
+    <style type="text/css">
+        table{
+            border:double;
+        }
+        td{
+            border:double;
+        }
+         th{
+            border:double;
+        }
+    </style>
+    <script src="Scripts/jquery-2.0.3.min.js"></script>
+    <script src="Scripts/knockout-3.0.0.js"></script>
+    <script type="text/html" id="filtertemplate">
+        <input type="text" id="txtfilter"/>
+    </script>
+
+    <script type="text/html" id="defaulttemplate">
+       <th>EmpNo</th>
+    </script>
+    
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tbl th").on('click', function () {
+                if ($(this).contents().length === 1)
+                 {
+                    $(this).append($("<input type='text' id='txtfilter'/>"));
+                }
+            });
+            //$("#tbl").on('keydown', '#txtfilter', function () {
+            //    alert($(this).val());
+            //});
+
+        });
+    </script>
+
+</head>
+<body>
+    <input type="text"  id="tt"  data-bind="value: $root.Value, valueUpdate: 'blur', event: { blur: $root.FilterArray(Value) }"/>
+  <table id="tbl">
+       <tr>
+            <th>EmpNo</th><th>EmpName</th><th>DeptName</th><th>Designation</th><th>Salary</th>
+       </tr>
+      <tbody data-bind="foreach: TempEmp">
+            <tr>
+               <td><span data-bind="text:EmpNo"></span> </td>
+                <td><span data-bind="text: EmpName"></span> </td>
+                <td><span data-bind="text: DeptName"></span> </td>
+                <td><span data-bind="text: Designation"></span> </td>
+                 <td><span data-bind="text: Salary"></span> </td>
+            </tr>
+      </tbody>
+  </table>
+    <input type="button" value="Sort by EmpName" data-bind="click: $root.sortArray" />
+
+<script type="text/javascript">
+    var dataModel = function () {
+        var self = this;
+        self.sortflag = 0;
+        self.Employees = ko.observableArray([
+            { EmpNo: 101, EmpName: "Amar", DeptName: "D1", Designation: "Manager", Salary: 1000 },
+            { EmpNo: 102, EmpName: "Rajesh", DeptName: "D1", Designation: "Accountant", Salary: 1000 },
+            { EmpNo: 103, EmpName: "Kiran", DeptName: "D2", Designation: "Clerk", Salary: 1000 },
+            { EmpNo: 104, EmpName: "Amit", DeptName: "D2", Designation: "Manager", Salary: 1000 },
+            { EmpNo: 105, EmpName: "Mahesh", DeptName: "D3", Designation: "Accountant", Salary: 1000 },
+            { EmpNo: 106, EmpName: "Makrand", DeptName: "D3", Designation: "Clerk", Salary: 1000 },
+            { EmpNo: 107, EmpName: "Mohan", DeptName: "D4", Designation: "Manager", Salary: 1000 },
+            { EmpNo: 108, EmpName: "Vaibhav", DeptName: "D4", Designation: "Accountant", Salary: 1000 },
+            { EmpNo: 109, EmpName: "Tushar", DeptName: "D5", Designation: "Clerk", Salary: 1000 },
+            { EmpNo: 110, EmpName: "Mohit", DeptName: "D5", Designation: "Manager", Salary: 1000 },
+            { EmpNo: 111, EmpName: "Kumar", DeptName: "D6", Designation: "Accountant", Salary: 1000 },
+            { EmpNo: 112, EmpName: "Varad", DeptName: "D6", Designation: "Clerk", Salary: 1000 },
+            { EmpNo: 113, EmpName: "Anant", DeptName: "D7", Designation: "Manager", Salary: 1000 },
+            { EmpNo: 114, EmpName: "Deepak", DeptName: "D7", Designation: "Account", Salary: 1000 },
+            { EmpNo: 115, EmpName: "Prashant", DeptName: "D8", Designation: "Clerk", Salary: 1000 },
+            { EmpNo: 116, EmpName: "Arun", DeptName: "D8", Designation: "Manager", Salary: 1000 }
+        ]);
+        self.TempEmp = ko.observableArray([]);
+        self.Value = ko.observable();
+
+        self.sortArray = function () {
+            if (self.sortflag === 0) {
+                self.Employees = self.TempEmp;
+                self.Employees.sort(function (left, right)
+                { return left.EmpName == right.EmpName ? 0 : (left.EmpName < right.EmpName ? -1 : 1) });
+                self.sortflag = 1;
+            }
+            else {
+                if (self.sortflag === 1)
+                {
+                    self.Employees = self.Employees.sort(function (left, right)
+                    { return left.EmpName == right.EmpName ? 0 : (left.EmpName < right.EmpName ? 1 : -1) });
+                    self.sortflag = 0;
+                }
+            }
+        };
+
+        self.FilterArray = function (txt) {
+            self.TempEmp(self.Employees());
+            self.Employees([]);
+            self.Value(txt());
+            alert(self.Value());
+            if (self.Value() !== 'undefined') {
+                return false;
+            }
+            else{
+            var Res = ko.utils.arrayFirst(self.TempEmp(), function (d) {
+                alert("In Filter");
+                return d.EmpName == self.Value();
+            });
+            
+            alert("Res " + Res);
+            if (Res)
+            {
+                self.Employees().push(Res);
+                alert("New Lenght " + self.Employees().length);
+ //               return self.Employees();
+            }
+            }
+ 
+        };
+
+
+    };
+        ko.applyBindings(new dataModel());
+       
+    //    var dataModel = {
+    //        defaulttemplate:ko.observable('defaulttemplate'),
+    //        filtertemplate: ko.observable(),
+    //        sortArray:function (array) {
+    //            array.sort(function (left, right)
+    //            { return left.EmpName == right.EmpName ? 0 : (left.EmpName < right.EmpName ? -1 : 1) })
+    //        }
+    //};
+    //dataModel.displayTemplate = function (t) {
+    //    return t===this.filtertemplate()?'filtertemplate':this.defaulttemplate();
+    //}.bind(dataModel);
+
+    
+
+       // ko.applyBindings(new dataModel());
+</script>
+
+
+</body>
+</html>

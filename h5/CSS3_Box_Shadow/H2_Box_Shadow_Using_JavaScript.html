@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DEMO Applying CSS using JavaScript</title>
+    <style type="text/css">
+        .input{
+            height:auto;
+            width:auto;
+            box-shadow:5px 5px 50px 0px red;
+        }
+    </style>
+    <script type="text/javascript">
+        function Init() {
+            var btn = document.getElementById('btn');
+            btn.addEventListener('mouseenter', function () {
+                this.className = "input";
+            }, false);
+
+            btn.addEventListener('mouseleave', function () {
+                this.className = "";
+            }, false);
+        }
+        window.onload = Init;
+    </script>
+</head>
+<body>
+     <h4>The below shows the Box shadow applied to the element</h4>
+    <input type="button"  value="Press for Shadow" id="btn"/>
+</body>
+</html>

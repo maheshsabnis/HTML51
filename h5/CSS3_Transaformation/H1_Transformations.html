@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DEMO Transformations</title>
+    <style type="text/css">
+        #d1 {
+           height:100px;width:100px;
+           background-color:red;
+           border:double;
+           transform:skew(10deg);
+        }
+
+         #d2 {
+           height:10px;width:10px;
+           background-color:red;
+           border:double;
+          transform:skew(10deg);
+        }
+
+         #d3 {
+           height:10px;width:10px;
+           background-color:red;
+           border:double;
+           transform:matrix(20,3,3,100,10);
+        }
+    </style>
+</head>
+<body>
+   <p>
+     Skew Transform
+    <div id="d1"></div>
+   </p>
+
+    <p>
+     Scale Transform
+    <div id="d2"></div>
+   </p>
+
+    <p>
+     Matrix Transform
+    <div id="d3"></div>
+   </p>
+
+</body>
+</html>

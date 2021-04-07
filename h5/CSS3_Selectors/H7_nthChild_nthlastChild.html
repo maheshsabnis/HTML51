@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>The Page demoing the nth-child(n) and nth-last-child(n)</title>
+    <style type="text/css">
+        table,td{
+             border:double;
+        }
+        tr:nth-child(2){
+            background-color:cyan;
+        }
+        tr:nth-last-child(2)
+        {
+            background-color:red;
+        }
+        td:nth-last-child(1){
+            background-color:yellow;
+        }
+    </style>
+</head>
+<body>
+    <h4>The style is applied on the nth-child(n) and nth-last-child(n)</h4>
+    <table>
+         <tr>
+             <td>11</td>
+             <td>12</td>
+             <td>13</td>
+         </tr>
+          <tr>
+             <td>21</td>
+             <td>22</td>
+             <td>23</td>
+         </tr>
+          <tr>
+             <td>31</td>
+             <td>32</td>
+             <td>33</td>
+         </tr>
+          <tr>
+             <td>41</td>
+             <td>42</td>
+             <td>43</td>
+         </tr>
+        <tr>
+             <td>51</td>
+             <td>52</td>
+             <td>53</td>
+         </tr>
+    </table>
+</body>
+</html>

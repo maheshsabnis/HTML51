@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>The Checked List Box</title>
+    <script src="../Scripts/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input:checkbox").click(function () {
+                var arr = [];
+                var lst = $(':checkbox:checked');
+                lst.each(function () {
+                    arr.push($(this).val());
+                });
+                $("#dvnames").html(arr.join('<br/>'));
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <h4>The demo for checked list box</h4>
+    <ul id="lstnames">
+        <li>
+              <input type="checkbox" value="MS"/>MS
+        </li>
+          <li>
+              <input type="checkbox" value="TS"/>TS
+        </li>
+          <li>
+              <input type="checkbox" value="LS"/>LS
+        </li>
+          <li>
+              <input type="checkbox" value="RS"/>RS
+        </li>
+          <li>
+              <input type="checkbox" value="NS"/>NS
+        </li>
+
+    </ul>
+    <div id="dvnames"></div>
+</body>
+</html>

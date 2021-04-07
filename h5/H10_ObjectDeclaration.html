@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Page DEMO Object Declaration</title>
+    <script src="MyScripts/ObjectDeclaration.js"></script>
+    <script type="text/javascript">
+        myObject.firstName = "Tejas";
+        myObject.middleName = "Mahesh";
+        myObject['lastName'] = "Sabnis";
+        //Geting Property Values
+        alert(myObject.firstName + "  " + myObject.middleName + "  " + myObject['lastName']);
+        //Using Typeof for reflection
+        alert(typeof (myObject.firstName));
+      
+        document.writeln("List of Properties in the Object");
+        enumerateObjectProperties(myObject);
+
+        //Deleting the property from Object
+        delete myObject.lastName;
+        document.writeln("List of Properties in the Object");
+        enumerateObjectProperties(myObject);
+
+        function enumerateObjectProperties(obj)
+        {
+            //Using Enumeration
+            for (name in obj) {
+                if (typeof obj[name] !== 'function') {
+                    document.writeln(name + '      ' + obj[name]);
+                }
+            }
+        }
+
+        
+
+    </script>
+   
+</head>
+<body>
+
+</body>
+</html>

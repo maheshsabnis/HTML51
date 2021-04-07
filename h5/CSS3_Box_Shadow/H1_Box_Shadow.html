@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>The Page for Box Shodow</title>
+    <style type="text/css">
+        .input{
+            height:auto;
+            width:auto;
+            box-shadow:5px 5px 50px 0px red;
+        }
+    </style>
+    <script src="../Scripts/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn").on('mouseenter', function () {
+                $(this).addClass('input');
+            });
+
+            $("#btn").on('mouseleave', function () {
+                $(this).removeClass('input');
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <h4>The below shows the Box shadow applied to the element</h4>
+    <input type="button"  value="Press for Shadow" id="btn"/>
+</body>
+</html>

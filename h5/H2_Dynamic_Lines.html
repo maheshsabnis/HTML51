@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DEMO Dynamic Drawinf of Lines</title>
+    <style type="text/css">
+        #dvcontainer {
+           height:600px;width:900px;border:double;background-color:azure;
+           position:fixed;
+           left:100px;
+         }
+    </style>
+
+    <script type="text/javascript">
+        var maxValueYAxis;
+        var yaxisMarker;
+        function init() {
+
+            var population = [
+                    { "statename": "MH", "population": 10000 },
+                    { "statename": "AP", "population": 11000 },
+                    { "statename": "KR", "population": 9000 },
+                    { "statename": "GJ", "population": 9200 },
+                    { "statename": "MP", "population": 9900 },
+                    { "statename": "KL", "population": 8000 },
+                    { "statename": "TN", "population": 8300 },
+                    { "statename": "CH", "population": 9800 },
+                    { "statename": "TJ", "population": 8800 },
+                    { "statename": "OR", "population": 7000 },
+            ];
+
+            var onlyPopulation = []; //The Array to store the Populations only
+
+
+            var svg = document.getElementsByTagName('svg')[0]; //Get the SVG Element
+            //var textelement = document.createElementNS("http://www.w3.org/2000/svg",'text');
+            //textelement.setAttribute('dx', "340");
+            //textelement.setAttribute('dy', "630");
+            //textelement.setAttribute('fill', "red");
+
+            //var txtnode = document.createTextNode("name");
+            //textelement.appendChild(txtnode);
+            //svg.appendChild(textelement);
+
+            var dx = 20;
+           
+            var sortedPopulation = population.sort(sortJsonArray("population"));
+
+            //Loop to display the StateName on X-axis
+            for (var i = 0; i < sortedPopulation.length; i++) {
+                var textelement = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+                textelement.setAttribute('dx', dx);
+                textelement.setAttribute('dy', 620);
+                var txtnode = document.createTextNode(sortedPopulation[i].statename);
+                textelement.appendChild(txtnode);
+                svg.appendChild(textelement);
+                dx += 80;
+            }
+            //Ends Here
+
+            debugger;
+            maxValueYAxis = 0;
+            //Loop to display the coordinate marks on the Y-axis
+            for (var i = 0; i < sortedPopulation.length; i++) {
+                var maxValue = parseInt(sortedPopulation[i].population);
+                if (maxValue > maxValueYAxis)
+                {
+                    maxValueYAxis = maxValue;
+                }
+            }
+
+        }
+
+        //function to sort array
+        function sortJsonArray(ele) {
+            return function (l, r) {
+                if (l[ele] > r[ele]) {
+                    return 1;
+                } else if (l[ele] < r[ele]) {
+                    return -1;
+                }
+                return 0;
+            }
+        }
+        //Ends Here
+
+        window.onload = init;
+    </script>
+
+</head>
+<body>
+    <div  id="dvcontainer">
+        <svg id="svgcontainer" height="600" width="900">
+            <line id="xline" x1="0" y1="0" x2="0" y2="600"  stroke="black" stroke-width="5"></line>
+            <line id="yline" x1="0" y1="600" x2="900" y2="600"  stroke="black" stroke-width="5"></line>
+           <!-- <text dx="20" dy="630">MH</text> 
+            <text dx="60" dy="630">AP</text> 
+            <text dx="100" dy="630">KR</text> 
+            <text dx="140" dy="630">KL</text> 
+            <text dx="180" dy="630" >TN</text> 
+            <text dx="220" dy="630">GJ</text> 
+            <text dx="260" dy="630">CH</text> 
+            <text dx="300" dy="630">AP</text> -->
+        </svg>
+    </div>
+
+    
+
+
+</body>
+</html>

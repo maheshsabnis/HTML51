@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DEMO Imvocation Pattern</title>
+    <script src="MyScripts/InvocationPattern.js"></script>
+    <script type="text/javascript">
+        //The Method Invocation Pattern
+        document.writeln("Add " + myObject.add(3, 4));
+        document.writeln("Sub " + myObject.sub(3, 4));
+
+        //The Function Invocation Pattern
+        document.writeln("Mult " + myObject.mult(3, 4));
+        document.writeln("Div " + myObject.div(3, 4));
+
+        //The Method Invocation Pattern
+        alert(myobj.square());
+
+        //Constructor Invocation
+        var vo = new valueObject(2345);
+        alert(vo.d);
+
+        var obj1 = new valueObject("Mahesh Ramesh Sabnis");
+        alert(obj1.d);
+        obj1.constructor(333)
+        alert(obj1.d);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

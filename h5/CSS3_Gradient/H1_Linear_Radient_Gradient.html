@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>The Page Demoing the Linear and Radial Gradient</title>
+    <style type="text/css">
+        div{
+            height:100px;
+            width:100px;
+            border:dashed;
+        }
+
+        #dvlinear{
+            background:-webkit-linear-gradient(red,yellow);
+            background:linear-gradient(red,yellow);
+        }
+
+         #dvredient{
+             background:-webkit-radial-gradient(red,yellow);
+            background:repeating-radial-gradient(red, yellow);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="dvlinear">Linear</div>
+    <div id="dvredient">Radient</div>
+</body>
+</html>

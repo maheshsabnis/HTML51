@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DEMO Animation with CSS 3</title>
+    <style type="text/css">
+        div {
+            height: 200px;
+            width: 200px;
+            border: double;
+            background-color: red;
+            -webkit-animation: myanimation 1s infinite;
+            animation: myanimation 5s infinite;
+            -webkit-animation-direction: alternate-reverse;
+            animation-direction: alternate-reverse;
+        }
+
+        @keyframes myanimation {
+            from {
+                background-color: red;
+            }
+
+            to {
+                background-color: yellow;
+            }
+        }
+
+        @-webkit-keyframes myanimation {
+            from {
+                background-color: red;
+            }
+
+            to {
+                background-color: yellow;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div sty></div>
+</body>
+</html>
